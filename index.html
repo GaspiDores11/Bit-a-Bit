@@ -7,6 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="bit-a-bit.css">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MMN7HMH4');</script>
+<!-- End Google Tag Manager -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18356510263"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -17,7 +24,10 @@
 </script>
 </head>
 <body>
-
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMN7HMH4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <header>
   <div class="nav">
     <div class="logo">
@@ -210,7 +220,7 @@
     <span class="welcome-popup-badge">Oferta de bienvenida</span>
     <h3 id="welcome-popup-title">Tu primer análisis gratis</h3>
     <p>Recibí un diagnóstico inicial sin costo y reclamá tu beneficio escribiéndonos por WhatsApp.</p>
-    <a href="https://wa.me/5491173690680?text=Hola%20Bit%20a%20Bit,%20quiero%20reclamar%20mi%20an%C3%A1lisis%20gratuito" class="welcome-popup-cta" target="_blank" rel="noopener">Reclamar por WhatsApp</a>
+    <a href="https://wa.me/5491173690680?text=Hola%20Bit%20a%20Bit,%20quiero%20reclamar%20mi%20an%C3%A1lisis%20gratuito" class="welcome-popup-cta" target="_blank" rel="noopener" data-gtm-click="whatsapp-popup">Reclamar por WhatsApp</a>
   </div>
 </div>
 
@@ -239,6 +249,18 @@
 
   popup?.querySelector('.welcome-popup-close')?.addEventListener('click', closeWelcomePopup);
   popup?.querySelector('.welcome-popup-backdrop')?.addEventListener('click', closeWelcomePopup);
+  document.addEventListener('click', (event) => {
+    const target = event.target.closest('[data-gtm-click="whatsapp-popup"]');
+    if (target) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'whatsapp_popup_click',
+        eventCategory: 'popup',
+        eventAction: 'click_whatsapp',
+        eventLabel: 'welcome_popup'
+      });
+    }
+  });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && popup && !popup.hidden) {
       closeWelcomePopup();
