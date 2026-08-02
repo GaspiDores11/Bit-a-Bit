@@ -256,6 +256,17 @@
   </div>
 </section>
 
+<div id="welcome-popup" class="welcome-popup" hidden role="dialog" aria-modal="true" aria-labelledby="welcome-popup-title">
+  <div class="welcome-popup-backdrop" data-close="true"></div>
+  <div class="welcome-popup-card">
+    <button class="welcome-popup-close" type="button" aria-label="Cerrar popup">×</button>
+    <span class="welcome-popup-badge">Oferta de bienvenida</span>
+    <h3 id="welcome-popup-title">Tu primer análisis gratis</h3>
+    <p>Recibí un diagnóstico inicial sin costo y reclamá tu beneficio escribiéndonos por WhatsApp.</p>
+    <a href="https://wa.me/5491173690680?text=Hola%20Bit%20a%20Bit,%20quiero%20reclamar%20mi%20an%C3%A1lisis%20gratuito" class="welcome-popup-cta" target="_blank" rel="noopener">Reclamar por WhatsApp</a>
+  </div>
+</div>
+
 <footer>
   <div class="footer-inner">
     <div>© 2026 Bit a Bit — Soporte Técnico</div>
@@ -264,6 +275,29 @@
 </footer>
 
 <script>
+  const popup = document.getElementById('welcome-popup');
+  const popupStorageKey = 'bitabit-welcome-popup-shown';
+
+  function closeWelcomePopup(){
+    if (!popup) return;
+    popup.hidden = true;
+    localStorage.setItem(popupStorageKey, '1');
+  }
+
+  if (popup && !localStorage.getItem(popupStorageKey)) {
+    window.setTimeout(() => {
+      popup.hidden = false;
+    }, 800);
+  }
+
+  popup?.querySelector('.welcome-popup-close')?.addEventListener('click', closeWelcomePopup);
+  popup?.querySelector('.welcome-popup-backdrop')?.addEventListener('click', closeWelcomePopup);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && popup && !popup.hidden) {
+      closeWelcomePopup();
+    }
+  });
+
   let currentVideo = 0;
   const videos = Array.from(document.querySelectorAll('.video-card'));
   const videoElements = videos.map((videoCard) => videoCard.querySelector('video'));
