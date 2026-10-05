@@ -496,9 +496,9 @@ footer{padding:36px 24px;border-top:1px solid var(--line);}
 }
 
 .whatsapp-float svg {
-  width: 32px;
-  height: 32px;
-  fill: #FFFFFF;
+  width: 32px !important;
+  height: 32px !important;
+  display: block;
 }
 .whatsapp-float:hover{transform:translateY(-3px) scale(1.06);animation-play-state:paused;}
 @media(max-width:480px){
